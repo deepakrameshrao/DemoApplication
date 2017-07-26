@@ -163,26 +163,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onInit(int status) {
-        // status can be either TextToSpeech.SUCCESS or TextToSpeech.ERROR.
         if (status == TextToSpeech.SUCCESS) {
-            // Set preferred language to US english.
-            // Note that a language may not be available, and the result will indicate this.
             int result = mTts.setLanguage(Locale.US);
-            // Try this someday for some interesting results.
-            // int result mTts.setLanguage(Locale.FRANCE);
             if (result == TextToSpeech.LANG_MISSING_DATA ||
                     result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Lanuage data is missing or the language is not supported.
                 Log.e(TAG, "Language is not available.");
                 mTts = null;
-            } else {
-                // Check the documentation for other possible result codes.
-                // For example, the language may be available for the locale,
-                // but not for the specified country and variant.
-
-                // The TTS engine has been successfully initialized.
-                // Allow the user to press the button for the app to speak again.
-                // Greet the user.
             }
         } else {
             // Initialization failed.

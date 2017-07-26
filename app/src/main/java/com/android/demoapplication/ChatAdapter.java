@@ -10,10 +10,6 @@ import com.android.demoapplication.entity.Message;
 
 import java.util.ArrayList;
 
-/**
- * Created by deepakrameshrao on 25/07/17.
- */
-
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public static final int TYPE_DOCTOR = 1;
