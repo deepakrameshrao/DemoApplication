@@ -107,7 +107,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                         mRecyclerView.scrollToPosition(mMessageArrayList.size() - 1);
                     }
                 }, 500);
-                if (mTts != null) {
+                if (mTts != null && mShouldSpeak) {
                     mTts.speak(mLastMessageFromDoctor,
                             TextToSpeech.QUEUE_FLUSH,  // Drop all pending entries in the playback queue.
                             null);
@@ -122,17 +122,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-
-        /*for(int i =0 ; i< 10; i++) {
-            Message message = new Message();
-            message.isFromDoctor = (i % 2 == 0);
-            message.message = "Text #"+(i+1);
-            message.id = i;
-            DatabaseReference newValueRef =  mMessagesDBReference.push();
-            newValueRef.setValue(message);
-            mMessageArrayList.add(message);
-        }*/
 
         LinearLayoutManager recyclerLinearLayoutManager = new LinearLayoutManager(this);
 
