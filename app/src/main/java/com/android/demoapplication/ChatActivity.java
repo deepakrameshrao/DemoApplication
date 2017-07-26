@@ -34,6 +34,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference mMessagesDBReference;
     private String mLastMessageFromDoctor;
     private TextToSpeech mTts;
+    private boolean mShouldSpeak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 Message message = dataSnapshot.getValue(Message.class);
                 if (message.isFromDoctor) {
                     mLastMessageFromDoctor = message.message;
+                    mShouldSpeak = true;
                 }
                 mMessageArrayList.add(message);
             }
@@ -109,6 +111,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     mTts.speak(mLastMessageFromDoctor,
                             TextToSpeech.QUEUE_FLUSH,  // Drop all pending entries in the playback queue.
                             null);
+                    mShouldSpeak = false;
                 }
             }
 
